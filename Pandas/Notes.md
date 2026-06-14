@@ -3,8 +3,8 @@
 ## Import Libraries
 
 ```python
-import numpy as np
-import pandas as pd
+import numpy as np   # Import NumPy for numerical operations
+import pandas as pd  # Import Pandas for data manipulation
 ```
 
 ---
@@ -16,27 +16,20 @@ NumPy is used for numerical computing and working with arrays. Almost all ML lib
 ## Creating Arrays
 
 ```python
-np.array([1,2,3])              # 1D array
-
-np.array([[1,2],[3,4]])        # 2D array
-
-np.zeros((2,3))                # Matrix of zeros
-
-np.ones((2,3))                 # Matrix of ones
-
-np.arange(0,10)                # [0,1,2,3,4,5,6,7,8,9]
+np.array([1,2,3])           # Create a 1D array from a list
+np.array([[1,2],[3,4]])     # Create a 2D array (matrix) from nested lists
+np.zeros((2,3))             # Create a 2x3 matrix filled with 0s
+np.ones((2,3))              # Create a 2x3 matrix filled with 1s
+np.arange(0,10)             # Create array [0,1,2,3,4,5,6,7,8,9]
 ```
 
 ## Array Information
 
 ```python
-a.shape      # Dimensions (rows, columns)
-
-a.ndim       # Number of dimensions
-
-a.size       # Total elements
-
-a.dtype      # Data type
+a.shape    # Returns (rows, columns) — dimensions of the array
+a.ndim     # Returns number of dimensions (1D, 2D, etc.)
+a.size     # Returns total number of elements in the array
+a.dtype    # Returns data type of elements (int, float, etc.)
 ```
 
 Example:
@@ -44,128 +37,86 @@ Example:
 ```python
 a = np.array([[1,2,3],[4,5,6]])
 
-a.shape
-# (2,3)
+a.shape    # Returns (2, 3) — 2 rows and 3 columns
 ```
-
-Meaning:
-
-- 2 rows
-- 3 columns
 
 ## Indexing
 
 ```python
-a[0]         # First element
-
-a[1]         # Second element
-
-a[1,0]       # Row 1 Column 0
-
-a[0,2]       # Row 0 Column 2
+a[0]       # Access first element (or first row in 2D)
+a[1]       # Access second element (or second row in 2D)
+a[1,0]     # Access element at row 1, column 0
+a[0,2]     # Access element at row 0, column 2
 ```
 
 ## Slicing
 
 ```python
-a[1:4]       # Elements from index 1 to 3
-
-a[:3]        # First 3 elements
-
-a[2:]        # From index 2 to end
-
-a[:,1]       # Entire second column
-
-a[0,:]       # Entire first row
+a[1:4]     # Get elements from index 1 to 3 (end index is excluded)
+a[:3]      # Get first 3 elements (index 0, 1, 2)
+a[2:]      # Get all elements from index 2 to end
+a[:,1]     # Get entire second column (all rows, column 1)
+a[0,:]     # Get entire first row (row 0, all columns)
 ```
 
 ## Reshaping Arrays
 
 ```python
-a.reshape(2,3)
-
-a.reshape(3,2)
-
-a.flatten()      # Convert to 1D array
+a.reshape(2,3)   # Reshape array into 2 rows and 3 columns
+a.reshape(3,2)   # Reshape array into 3 rows and 2 columns
+a.flatten()      # Flatten any array into a 1D array
 ```
-
-Very common in ML preprocessing.
 
 ## Mathematical Operations
 
 ```python
-a + 5
-
-a - 2
-
-a * 2
-
-a / 2
-
-a ** 2
+a + 5    # Add 5 to every element
+a - 2    # Subtract 2 from every element
+a * 2    # Multiply every element by 2
+a / 2    # Divide every element by 2
+a ** 2   # Square every element
 ```
-
-Operations are applied to every element.
 
 ## Array vs Array Operations
 
 ```python
-a + b
-
-a - b
-
-a * b
-
-a / b
+a + b    # Add corresponding elements of two arrays
+a - b    # Subtract corresponding elements
+a * b    # Multiply corresponding elements (not matrix multiplication)
+a / b    # Divide corresponding elements
 ```
 
 ## Aggregation Functions
 
 ```python
-a.sum()      # Sum of all elements
-
-a.mean()     # Average
-
-a.max()      # Maximum
-
-a.min()      # Minimum
-
-a.std()      # Standard deviation
-
-a.var()      # Variance
+a.sum()    # Returns sum of all elements
+a.mean()   # Returns average of all elements
+a.max()    # Returns the largest value in the array
+a.min()    # Returns the smallest value in the array
+a.std()    # Returns standard deviation of elements
+a.var()    # Returns variance of elements
 ```
-
-Used constantly during data analysis.
 
 ## Matrix Multiplication
 
 ```python
-A @ B
-
-np.dot(A,B)
+A @ B        # Multiply two matrices (dot product)
+np.dot(A,B)  # Same as above — multiply two matrices
 ```
-
-Machine Learning is heavily based on matrix multiplication.
 
 ## Transpose
 
 ```python
-A.T
+A.T    # Flip the matrix — rows become columns, columns become rows
 ```
-
-Converts rows into columns and vice versa.
 
 Example:
 
 ```python
-[[1,2,3],
+[[1,2,3],    # Before transpose
  [4,5,6]]
-```
 
-becomes
-
-```python
-[[1,4],
+[[1,4],      # After transpose — rows became columns
  [2,5],
  [3,6]]
 ```
@@ -173,25 +124,18 @@ becomes
 ## Random Numbers
 
 ```python
-np.random.rand(3)
-
-np.random.randint(1,10,size=5)
-
-np.random.seed(42)
+np.random.rand(3)           # Generate 3 random float values between 0 and 1
+np.random.randint(1,10,size=5)  # Generate 5 random integers between 1 and 9
+np.random.seed(42)          # Fix random seed so results are reproducible
 ```
-
-Used for initializing models and generating random samples.
 
 ## Useful ML Functions
 
 ```python
-a.argmax()      # Index of largest value
-
-a.argmin()      # Index of smallest value
-
-np.unique(a)    # Unique values
-
-np.where(a>5)   # Indices satisfying condition
+a.argmax()      # Returns index of the largest value in the array
+a.argmin()      # Returns index of the smallest value in the array
+np.unique(a)    # Returns sorted array of unique (non-duplicate) values
+np.where(a>5)   # Returns indices of elements that satisfy the condition
 ```
 
 ---
@@ -205,43 +149,32 @@ Think of it as Excel inside Python.
 ## Reading Dataset
 
 ```python
-df = pd.read_csv("data.csv")
+df = pd.read_csv("data.csv")   # Load a CSV file into a DataFrame
 ```
-
-Most datasets are CSV files.
 
 ## Viewing Dataset
 
 ```python
-df.head()       # First 5 rows
-
-df.tail()       # Last 5 rows
-
-df.sample(5)    # Random 5 rows
+df.head()      # Show first 5 rows of the DataFrame
+df.tail()      # Show last 5 rows of the DataFrame
+df.sample(5)   # Show 5 randomly selected rows
 ```
 
 ## Dataset Information
 
 ```python
-df.info()
-
-df.describe()
-
-df.shape
-
-df.columns
-
-df.dtypes
+df.info()       # Show column names, data types, and non-null counts
+df.describe()   # Show statistics like mean, min, max for numeric columns
+df.shape        # Returns (number of rows, number of columns)
+df.columns      # Returns list of all column names
+df.dtypes       # Returns data type of each column
 ```
-
-Useful for understanding a dataset quickly.
 
 ## Selecting Columns
 
 ```python
-df["Age"]
-
-df[["Name","Age"]]
+df["Age"]             # Select single column — returns a Series
+df[["Name","Age"]]    # Select multiple columns — returns a DataFrame
 ```
 
 ## Selecting Rows
@@ -249,42 +182,35 @@ df[["Name","Age"]]
 ### By Position
 
 ```python
-df.iloc[0]
-
-df.iloc[0:5]
+df.iloc[0]      # Select row at position 0 (first row)
+df.iloc[0:5]    # Select rows from position 0 to 4
 ```
 
 ### By Label
 
 ```python
-df.loc[0]
-
-df.loc[0:5]
+df.loc[0]       # Select row with index label 0
+df.loc[0:5]     # Select rows with index labels 0 to 5 (end inclusive)
 ```
 
 ## Filtering Data
 
 ```python
-df[df["Age"] > 22]
-
-df[df["Salary"] > 50000]
-
-df[(df["Age"] > 22) &
-   (df["Salary"] > 50000)]
+df[df["Age"] > 22]                              # Keep rows where Age is greater than 22
+df[df["Salary"] > 50000]                        # Keep rows where Salary is greater than 50000
+df[(df["Age"] > 22) & (df["Salary"] > 50000)]  # Keep rows satisfying both conditions
 ```
-
-Very common during data cleaning.
 
 ## Creating New Columns
 
 ```python
-df["Bonus"] = df["Salary"] * 0.1
+df["Bonus"] = df["Salary"] * 0.1   # Create new column Bonus = 10% of Salary
 ```
 
 ## Removing Columns
 
 ```python
-df.drop("Bonus", axis=1)
+df.drop("Bonus", axis=1)   # Remove the Bonus column (axis=1 means column)
 ```
 
 ## Missing Values
@@ -292,79 +218,67 @@ df.drop("Bonus", axis=1)
 ### Check Missing Values
 
 ```python
-df.isnull().sum()
+df.isnull().sum()   # Count number of missing (NaN) values in each column
 ```
 
 ### Remove Missing Values
 
 ```python
-df.dropna()
+df.dropna()   # Remove all rows that have at least one missing value
 ```
 
 ### Fill Missing Values
 
 ```python
-df.fillna(0)
-
-df["Age"].fillna(df["Age"].mean())
+df.fillna(0)                        # Replace all missing values with 0
+df["Age"].fillna(df["Age"].mean())  # Replace missing Age values with the column mean
 ```
-
-One of the most important data preprocessing steps.
 
 ## Sorting
 
 ```python
-df.sort_values("Age")
-
-df.sort_values("Age", ascending=False)
+df.sort_values("Age")                    # Sort rows by Age in ascending order
+df.sort_values("Age", ascending=False)   # Sort rows by Age in descending order
 ```
 
 ## Unique Values
 
 ```python
-df["Department"].unique()
-
-df["Department"].nunique()
+df["Department"].unique()    # Return array of all unique values in Department column
+df["Department"].nunique()   # Return count of unique values in Department column
 ```
 
 ## Count Occurrences
 
 ```python
-df["Department"].value_counts()
+df["Department"].value_counts()   # Count how many times each Department value appears
 ```
-
-Very useful in exploratory data analysis (EDA).
 
 ## GroupBy
 
 ```python
-df.groupby("Department")["Salary"].mean()
+df.groupby("Department")["Salary"].mean()   # Group by Department and get average Salary per group
 ```
 
 Other common aggregations:
 
 ```python
-.sum()
-
-.max()
-
-.min()
-
-.count()
+.sum()     # Total of each group
+.max()     # Maximum value in each group
+.min()     # Minimum value in each group
+.count()   # Number of rows in each group
 ```
 
 ## Merging DataFrames
 
 ```python
-pd.merge(df1, df2, on="ID")
+pd.merge(df1, df2, on="ID")   # Join df1 and df2 on the common column ID (like SQL JOIN)
 ```
-
-Similar to SQL JOIN.
 
 ## Saving Dataset
 
 ```python
-df.to_csv("output.csv", index=False)
+df.to_csv("output.csv", index=False)   # Save DataFrame to CSV, index=False skips row numbers
 ```
 
 ---
@@ -375,30 +289,22 @@ df.to_csv("output.csv", index=False)
 import pandas as pd
 import numpy as np
 
-# Load dataset
-df = pd.read_csv("data.csv")
+df = pd.read_csv("data.csv")   # Load the dataset
 
-# Inspect data
-df.head()
-df.info()
-df.describe()
+df.head()       # Preview first 5 rows
+df.info()       # Check column types and missing values
+df.describe()   # Get statistical summary
 
-# Handle missing values
-df.fillna(0)
+df.fillna(0)    # Fill missing values with 0
 
-# Features (input)
-X = df[["Age","Salary"]]
+X = df[["Age","Salary"]]   # Select input features
+y = df["Purchased"]        # Select target column
 
-# Target (output)
-y = df["Purchased"]
+X = X.values   # Convert features DataFrame to NumPy array
+y = y.values   # Convert target Series to NumPy array
 
-# Convert to NumPy arrays
-X = X.values
-y = y.values
-
-# Check dimensions
-X.shape
-y.shape
+X.shape   # Check shape of features array
+y.shape   # Check shape of target array
 ```
 
 ---
@@ -408,53 +314,53 @@ y.shape
 ## NumPy
 
 ```python
-array()
-zeros()
-ones()
-arange()
-shape
-reshape()
-flatten()
-sum()
-mean()
-max()
-min()
-std()
-var()
-dot()
-T
-argmax()
-argmin()
-unique()
-where()
-random.rand()
-random.randint()
+array()           # Create an array from a list
+zeros()           # Create array filled with 0s
+ones()            # Create array filled with 1s
+arange()          # Create array with a range of values
+shape             # Get dimensions of the array
+reshape()         # Change shape without changing data
+flatten()         # Convert to 1D array
+sum()             # Sum of all elements
+mean()            # Average of all elements
+max()             # Largest value
+min()             # Smallest value
+std()             # Standard deviation
+var()             # Variance
+dot()             # Matrix multiplication
+T                 # Transpose the matrix
+argmax()          # Index of largest value
+argmin()          # Index of smallest value
+unique()          # Get unique values
+where()           # Get indices where condition is True
+random.rand()     # Random floats between 0 and 1
+random.randint()  # Random integers in a range
 ```
 
 ## Pandas
 
 ```python
-read_csv()
-head()
-tail()
-sample()
-info()
-describe()
-shape
-columns
-dtypes
-iloc[]
-loc[]
-isnull()
-fillna()
-dropna()
-sort_values()
-groupby()
-value_counts()
-unique()
-nunique()
-merge()
-to_csv()
+read_csv()       # Load CSV file into DataFrame
+head()           # Show first 5 rows
+tail()           # Show last 5 rows
+sample()         # Show random rows
+info()           # Show column info and null counts
+describe()       # Show summary statistics
+shape            # Get (rows, columns)
+columns          # Get column names
+dtypes           # Get data types of columns
+iloc[]           # Select rows by position
+loc[]            # Select rows by label
+isnull()         # Check for missing values
+fillna()         # Fill missing values
+dropna()         # Drop rows with missing values
+sort_values()    # Sort rows by column
+groupby()        # Group rows and aggregate
+value_counts()   # Count occurrences of each value
+unique()         # Get unique values in a column
+nunique()        # Count unique values in a column
+merge()          # Join two DataFrames
+to_csv()         # Save DataFrame to CSV
 ```
 
 ---
